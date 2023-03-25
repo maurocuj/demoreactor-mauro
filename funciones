@@ -1,0 +1,90 @@
+from datetime import timedelta, datetime
+def rocket_parts():
+    # print("payload, propellant, structure")
+    return "payload, propellant, structure"
+
+output = rocket_parts()
+print(output)
+
+
+#Esta función toma un objeto iterable (por ejemplo, una lista) y devuelve True si algún elemento del objeto iterable es True. De lo contrario, devuelve False.
+print(any([True, False, False]))
+print(any([False, False, False]))
+
+#Esta función crea una cadena a partir de un argumento. Si no se pasa ningún argumento, devuelve una cadena vacía:
+print(str())
+
+def distance_from_earth(destination):
+    if destination == 'Moon':
+        return "238,855"
+    else:
+        return "Unable to compute to that destination"
+    
+print(distance_from_earth("Moon"))
+
+#Para usar varios argumentos, debe separarlos con una coma.
+def days_to_complete(distance,speed):
+    hours = distance / speed
+    return hours/24
+
+# asignarlo a una variable y, después, pasarlo a round() (una función integrada que redondea al número entero más cercano) para obtener un número entero
+total_days = days_to_complete(238855,75)
+print(round(total_days))
+
+#Pero un patrón útil es pasar funciones a otras funciones en lugar de asignar el valor devuelto:
+print(round(days_to_complete(238855, 75)))
+
+def gerate_report(main_tank, external_tank, hydrogen_tank):
+    output = f""" Fuel report:
+    main tank : {main_tank}
+    External tank: {external_tank}
+    Hydrogen tank: {hydrogen_tank}
+    """
+    print(output)
+
+gerate_report(80, 70, 75)
+
+def arrival_time(hours=51):
+    now = datetime.now()
+    arrival = now + timedelta(hours=hours)
+    return arrival.strftime("Arrival: %A %H:%M")
+
+def arrival_time(destination, hours=51):
+    now = datetime.now()
+    arrival = now + timedelta(hours=hours)
+    return arrival.strftime(f"{destination} Arrival: %A %H:%M")
+
+print(arrival_time(""))
+print(arrival_time("Moon"))
+print(arrival_time("orbit", hours=0.13))
+
+def variable_length(*args):
+    print(args)
+variable_length(None, 0, "asdasda")    
+
+def secuence_time(*args):
+    total_minutes = sum(args)
+    if total_minutes < 60:
+        return f"total time to launch is {total_minutes} minutes"
+    else:
+        return f"total time to launch is {total_minutes/60} hour"
+    
+print(secuence_time(30))
+
+def variable_length2(**kwargs):
+    print(kwargs)
+
+variable_length2(thanks=1, day = "wednesday", pilots=3)
+
+def crew_member(**kwargs):
+    print(f"{len(kwargs)} astronauts assigned for this mission:")
+    for titulo, nombres in kwargs.items():
+        print (f"{titulo}: {nombres}")
+
+crew_member(captain="Neil Armstrong", pilot="Buzz Aldrin", command_pilot="Michael Collins", commad_pilot2 ="Mauro Cuj")
+
+def fuel_report(**fuel_tanks):
+    for keys, value in fuel_tanks.items():
+        print(f'{keys}: {value}')
+
+fuel_report()        
